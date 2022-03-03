@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>job4j_car_accident Maven Webapp</name>
+  <name>job4j_car_accident</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,27 +19,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>5.2.7.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>5.2.7.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>5.2.7.RELEASE</version>
-    </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
@@ -82,7 +61,6 @@
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
   </dependencies>
 
   <build>
@@ -109,6 +87,13 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
