@@ -10,6 +10,7 @@
     <title>Accident</title>
 </head>
 <body>
+<a href="<c:url value='/create'/>">Добавить инцидент</a>
 <table class="table">
     <thead>
     <tr>
@@ -17,6 +18,7 @@
         <th scope="col">Name</th>
         <th scope="col">Text</th>
         <th scope="col">Address</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -26,6 +28,7 @@
             <td>${accident.name}</td>
             <td>${accident.text}</td>
             <td>${accident.address}</td>
+            <td><a href="<c:url value='/edit?id=${accident.id}'/>">Редактировать</a></td>
         </tr>
     </c:forEach>
     </tbody>
