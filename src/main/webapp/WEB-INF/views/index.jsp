@@ -27,7 +27,7 @@
     <c:forEach var="accident" items="${accidents}">
         <tr>
             <td>${accident.id}</td>
-            <td>${accident.type}</td>
+            <td>${accident.type.name}</td>
             <td>
                 <c:forEach var="rule" items="${accident.rules}">
                     <p>${rule.name}</p>

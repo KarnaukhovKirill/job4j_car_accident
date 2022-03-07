@@ -4,14 +4,13 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class AccidentMem {
+public class AccidentMem implements AccidentStore {
     private Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
     private Map<Integer, AccidentType> accidentTypes = new ConcurrentHashMap<>();
     private Map<Integer, Rule> rules = new ConcurrentHashMap<>();
