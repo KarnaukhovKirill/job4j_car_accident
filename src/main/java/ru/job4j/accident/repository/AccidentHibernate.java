@@ -7,11 +7,8 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Repository
 @Primary
@@ -37,29 +34,14 @@ public class AccidentHibernate implements AccidentStore {
 
     @Override
     public Accident create(Accident accident, String[] rulesIds) {
-        addRules(accident, rulesIds);
         return doCommand(session -> {
             session.beginTransaction();
+            for (String i : rulesIds) {
+                accident.addRule(session.get(Rule.class, i));
+            }
             session.saveOrUpdate(accident);
             session.getTransaction().commit();
             return accident;
-        });
-    }
-
-    private void addRules(Accident accident, String[] rulesIds) {
-        doCommand(session -> {
-            var rules = (List<Rule>) session.createQuery("from Rule").list();
-            List<Integer> rulesId = Arrays.stream(rulesIds)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-            for (Rule rule : rules) {
-                for (Integer i : rulesId) {
-                    if (rule.getId() == i) {
-                        accident.addRule(rule);
-                    }
-                }
-            }
-            return null;
         });
     }
 
