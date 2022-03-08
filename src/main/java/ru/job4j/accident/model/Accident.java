@@ -1,15 +1,25 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "accidents")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private AccidentType type;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "accident_rules",
+                            joinColumns = @JoinColumn(name = "accident_id"),
+                            inverseJoinColumns = @JoinColumn(name = "rule_id"))
     private Set<Rule> rules = new HashSet<>();
 
     public Accident() {

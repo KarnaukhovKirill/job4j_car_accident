@@ -1,8 +1,16 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Entity
+@Table(name = "rules")
 public class Rule {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
 
