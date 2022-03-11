@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.function.Function;
 
 @Repository
-@Primary
 public class AccidentHibernate implements AccidentStore {
     private final SessionFactory sf;
 
