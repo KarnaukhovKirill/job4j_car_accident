@@ -58,6 +58,10 @@ public class AccidentService {
         return accidentRep.findById(id).get();
     }
 
+    public User findUserByUsername(String name) {
+        return users.findUserByUsername(name);
+    }
+
     public User add(User user) {
         return users.save(user);
     }
